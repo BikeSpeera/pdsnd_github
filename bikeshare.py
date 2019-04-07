@@ -214,22 +214,15 @@ def station_stats(df, five_lines):
     # TO DO: display most commonly used end station
     end_station = df['End Station'].value_counts()
     print('End Station', '*'*10)
-    if five_lines == 5:
+    if five_lines > 1:
         print('The most popular end station and rental numbers are: ')
-        print('{} \n'.format(end_station.iloc[0:5]))
-    elif five_lines == 3:
-        print('The most popular end station and rental numbers are: ')
-        print('{} \n'.format(end_station.iloc[0:3]))
+        print('{} \n'.format(end_station.iloc[0:five_lines]))
     else:
         print('The most popular end station is {} with {} rentals \n'.format(end_station.index[0], end_station.get(start_station.index[0])))
 
     # TO DO: display most frequent combination of start station and end station trip
-    if five_lines == 5:
-        result = df[['Start Station', 'End Station']].groupby(['Start Station', 'End Station']).size().nlargest(5)
-        print('\nTthe most popular station-to-station trips are: \n')
-        print('{} \n'.format(result))
-    elif five_lines == 3:
-        result = df[['Start Station', 'End Station']].groupby(['Start Station', 'End Station']).size().nlargest(3)
+    if five_lines > 1:
+        result = df[['Start Station', 'End Station']].groupby(['Start Station', 'End Station']).size().nlargest(five_lines)
         print('\nTthe most popular station-to-station trips are: \n')
         print('{} \n'.format(result))
     else:
@@ -312,20 +305,16 @@ def user_stats(df, five_lines):
     # Check to see if there is valid data in the data set
     try:
         comm_birthyr = df['Birth Year'].value_counts()
-        if five_lines == 5:
-            print('Five most common birth years are: ')
-            print('{} with '.format(comm_birthyr.iloc[0:5]))
-            print('Five most common rider ages are: ')
-        elif five_lines == 3:
-            print('Five most common birth years are: ')
-            print('{} with '.format(comm_birthyr.iloc[0:3]))
-            print('Five most common rider ages are: ')
+        if five_lines > 1:
+            dcty_num = {3: 'Three', 5: 'Five'}
+            print('{} most common birth years are: '.format(dcty_num[five_lines]))
+            print('{} with '.format(comm_birthyr.iloc[0:five_lines]))
+            print('{} most common rider ages are: '.format(dcty_num[five_lines]))
+            age_list = list(2019 - comm_birthyr.index[0:five_lines])
+            print('{} years old\n'.format(age_list))
         else:
             print('Most common birth year {} with {} users'.format(comm_birthyr.index[0], comm_birthyr.tolist()[0]))
             print('Most common rider age is {} years old\n'.format(2019 - comm_birthyr.index[0]))
-
-            age_list = list(2019 - comm_birthyr.index[0:5])
-            print('{} years old\n'.format(age_list))
 
         youngest = df['Birth Year'].max()
         print('Youngest birth year {}'.format(youngest))
