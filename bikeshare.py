@@ -11,8 +11,6 @@ KnowledgeBase post by John O in July 2018.
 
 import time
 import pandas as pd
-import numpy as np
-import datetime as dt
 
 CITY_DATA = {'chicago': 'chicago.csv',
              'new york city': 'new_york_city.csv',
@@ -89,12 +87,12 @@ def get_filters():
     
     lines = True
     while (lines):
-        userInput = input('Enter if you want to see the top line (\'1\') or top five (\'5\') lines of results:  ')
+        userInput = input('Enter if you want to see the top line (\'1\'), three (\'3\') or top five (\'5\') lines of results:  ')
         five_lines = userInput.lower()
-        if(five_lines in ['1', '5']):
+        if(five_lines in ['1', '3', '5']):
             lines = False
         else:
-            print('Sorry, {} is not valid.  Choose one (1) or five (5): '.format(five_lines))
+            print('Sorry, {} is not valid.  Choose one (1), three (3) or five (5): '.format(five_lines))
 
     print('-'*40)
     return city, month, day, int(five_lines)
@@ -204,31 +202,39 @@ def station_stats(df, five_lines):
     # TO DO: display most commonly used start station
     start_station = df['Start Station'].value_counts()
     print('Start Station', '*'*10)
-    if five_lines < 5:
-        print('The most popular start station is {} with {} rentals \n'.format(start_station.index[0], start_station.get(start_station.index[0])))
-    else:
+    if five_lines == 5:
         print('The most popular start station and rental numbers are: ')
         print('{} \n'.format(start_station.iloc[0:5]))
-#        print('{} \n'.format(start_station.index[0:5]))
+    elif five_lines == 3:
+        print('The most popular start station and rental numbers are: ')
+        print('{} \n'.format(start_station.iloc[0:3]))        
+    else:
+        print('The most popular start station is {} with {} rentals \n'.format(start_station.index[0], start_station.get(start_station.index[0])))
 
     # TO DO: display most commonly used end station
     end_station = df['End Station'].value_counts()
     print('End Station', '*'*10)
-    if five_lines < 5:
-        print('The most popular end station is {} with {} rentals \n'.format(end_station.index[0], end_station.get(start_station.index[0])))
-    else:
+    if five_lines == 5:
         print('The most popular end station and rental numbers are: ')
         print('{} \n'.format(end_station.iloc[0:5]))
-#        print('{} \n'.format(end_station.index[0:5]))
+    elif five_lines == 3:
+        print('The most popular end station and rental numbers are: ')
+        print('{} \n'.format(end_station.iloc[0:3]))
+    else:
+        print('The most popular end station is {} with {} rentals \n'.format(end_station.index[0], end_station.get(start_station.index[0])))
 
     # TO DO: display most frequent combination of start station and end station trip
-    if five_lines < 5:
-        result = df[['Start Station', 'End Station']].groupby(['Start Station', 'End Station']).size().nlargest(1)
-        print('\nTthe most popular station-to-station trip is: \n{} \n'.format(result))
-    else:
+    if five_lines == 5:
         result = df[['Start Station', 'End Station']].groupby(['Start Station', 'End Station']).size().nlargest(5)
         print('\nTthe most popular station-to-station trips are: \n')
         print('{} \n'.format(result))
+    elif five_lines == 3:
+        result = df[['Start Station', 'End Station']].groupby(['Start Station', 'End Station']).size().nlargest(3)
+        print('\nTthe most popular station-to-station trips are: \n')
+        print('{} \n'.format(result))
+    else:
+        result = df[['Start Station', 'End Station']].groupby(['Start Station', 'End Station']).size().nlargest(1)
+        print('\nTthe most popular station-to-station trip is: \n{} \n'.format(result))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -306,13 +312,17 @@ def user_stats(df, five_lines):
     # Check to see if there is valid data in the data set
     try:
         comm_birthyr = df['Birth Year'].value_counts()
-        if five_lines < 5:
-            print('Most common birth year {} with {} users'.format(comm_birthyr.index[0], comm_birthyr.tolist()[0]))
-            print('Most common rider age is {} years old\n'.format(2019 - comm_birthyr.index[0]))
-        else:
+        if five_lines == 5:
             print('Five most common birth years are: ')
             print('{} with '.format(comm_birthyr.iloc[0:5]))
             print('Five most common rider ages are: ')
+        elif five_lines == 3:
+            print('Five most common birth years are: ')
+            print('{} with '.format(comm_birthyr.iloc[0:3]))
+            print('Five most common rider ages are: ')
+        else:
+            print('Most common birth year {} with {} users'.format(comm_birthyr.index[0], comm_birthyr.tolist()[0]))
+            print('Most common rider age is {} years old\n'.format(2019 - comm_birthyr.index[0]))
 
             age_list = list(2019 - comm_birthyr.index[0:5])
             print('{} years old\n'.format(age_list))
