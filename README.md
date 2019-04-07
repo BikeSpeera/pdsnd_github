@@ -21,9 +21,11 @@ Program uses data files chicago.csv, new_york_city.csv, washington.csv
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
 Pandas documentation,
-Numpy documentation
-Python documentation
-Atlassian documentation on Git
-Data Carpentry for Biologists 
-SW Carpentry GitHub
-
+Numpy documentation,
+Python documentation,
+Atlassian documentation on Git,
+Data Carpentry for Biologists ,
+SW Carpentry GitHub,
+A Practiacl Introduction to Python Programming, by Brian Heinold
+A Whirlwind Tour of Python, by Jake VanderPlas
+IPython, by Jake VanderPlas
