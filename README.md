@@ -17,6 +17,11 @@ Data can be analyzed by month or day and reports use and user data.
 ### Files used
 Include the files used
 Program uses data files chicago.csv, new_york_city.csv, washington.csv
+During development I created and used files that were only 10K lines of each of the data files 
+called "chicago_10K.csv", "new_yor_city_10K.csv", and "washington_10K.csv" so they would load 
+faster and process faster.For testing specific filters like stations and gender I created small 
+files from one of the larger files that were names something like "gneder.csv"  and "station.csv".
+These files are not included in the repository.
 
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
@@ -26,6 +31,6 @@ Python documentation,
 Atlassian documentation on Git,
 Data Carpentry for Biologists ,
 SW Carpentry GitHub,
-A Practiacl Introduction to Python Programming, by Brian Heinold
+A Practical Introduction to Python Programming, by Brian Heinold
 A Whirlwind Tour of Python, by Jake VanderPlas
 IPython, by Jake VanderPlas
