@@ -207,7 +207,7 @@ def station_stats(df, five_lines):
         print('{} \n'.format(start_station.iloc[0:5]))
     elif five_lines == 3:
         print('The most popular start station and rental numbers are: ')
-        print('{} \n'.format(start_station.iloc[0:3]))        
+        print('{} \n'.format(start_station.iloc[0:3]))
     else:
         print('The most popular start station is {} with {} rentals \n'.format(start_station.index[0], start_station.get(start_station.index[0])))
 
@@ -238,13 +238,13 @@ def station_stats(df, five_lines):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    userInput = input('Would you like to continue to view five lines of results? (\'y\' or \'n\') ')
+    userInput = input('Would you like to continue to view (\'1\'), three (\'3\') or top five (\'5\') lines of results? ')
     continue_five = userInput.lower()
-    if continue_five == 'y':
-        five_lines = 5
+    if(continue_five in ['1', '3', '5']):
+        five_lines = int(continue_five)
     else:
-        five_lines = 1
-    
+        print('Sorry, {} is not valid.  Choose one (1), three (3) or five (5): '.format(continue_five))
+
     return five_lines
 
 
@@ -273,7 +273,7 @@ def trip_duration_stats(df, five_lines):
     travel_mt = df['Trip Duration'].mode()
     print('Most common travel time of all users is {}'.format(travel_mt))
 
-#    Tried to display a histogram or bar plot of the length of the trip, but  
+#    Tried to display a histogram or bar plot of the length of the trip, but
 #    was not able to parse out the data and generate the right plot.
 #    travel_times = df['Trip Duration'].value_counts().plot()
 
@@ -335,20 +335,19 @@ def user_stats(df, five_lines):
         print('Oldest birth year {}'.format(oldest))
         print('The oldest riders are {} years old\n'.format(2019 - int(oldest)))
 
-#        df.hist(column='Birth Year', figsize=(12,8), color='#b02091', frontcolor='red')
-
     # Only recover from the specific error.  Did not leave a bare 'except'
     except KeyError:
         print('Birth Year data not available.')
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    userInput = input('Would you like to continue to view five lines of results? (\'y\' or \'n\') ')
+    userInput = input('Would you like to continue to view (\'1\'), three (\'3\') or top five (\'5\') lines of results? ')
     continue_five = userInput.lower()
-    if continue_five == 'y':
-        five_lines = 5
+    if(continue_five in ['1', '3', '5']):
+        five_lines = int(continue_five)
     else:
-        five_lines = 1
+        print('Sorry, {} is not valid.  Choose one (1), three (3) or five (5): '.format(continue_five))
+
     return five_lines
 
 
