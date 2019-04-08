@@ -11,6 +11,13 @@ KnowledgeBase post by John O in July 2018.
 
 import time
 import pandas as pd
+<<<<<<< HEAD
+||||||| merged common ancestors
+import numpy as np
+import datetime as dt
+=======
+
+>>>>>>> documentation
 
 CITY_DATA = {'chicago': 'chicago.csv',
              'new york city': 'new_york_city.csv',
@@ -25,11 +32,14 @@ loop_yes = True
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
+    Asks user if they want to see only the top line of results 
+    or the top five (5) lines of the results.
 
     Returns:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
+        (int) five_lines - provides the option to display one line of results or the top 5 lines of results
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington).
@@ -101,6 +111,7 @@ def get_filters():
 def load_data(city, month, day, five_lines):
     """
     Loads data for the specified city and filters by month and day if applicable.
+    Loads value to show top line of results or the top five (5) lines of the results.
 
     Args:
         (str) city - name of the city to analyze
@@ -140,6 +151,7 @@ def load_data(city, month, day, five_lines):
 def time_stats(df, qmonth, five_lines):
     """
     Displays statistics on the most frequent times of travel.
+    Loads value to show top line of results or the top five (5) lines of the results.
 
     Args:
         df - Pandas DataFrame containing the city data
@@ -189,6 +201,7 @@ def time_stats(df, qmonth, five_lines):
 def station_stats(df, five_lines):
     """
     Displays statistics on the most popular stations and trip.
+    Loads value to show top line of results or the top five (5) lines of the results.
 
     Args:
         df - Pandas DataFrame containing the city data
@@ -244,6 +257,7 @@ def station_stats(df, five_lines):
 def trip_duration_stats(df, five_lines):
     """
     Displays statistics on the total and average trip duration.
+    Loads value to show top line of results or the top five (5) lines of the results.
 
     Args:
         df - Pandas DataFrame containing the city data
@@ -278,6 +292,7 @@ def trip_duration_stats(df, five_lines):
 def user_stats(df, five_lines):
     """
     Displays statistics on bikeshare users.
+    Loads value to show top line of results or the top five (5) lines of the results.
 
     Args:
         df - Pandas DataFrame containing the city data
@@ -343,6 +358,7 @@ def user_stats(df, five_lines):
 def raw_user_data(df, five_lines):
     """
     Displays statistics on bikeshare users.
+    Loads value to show top line of results or the top five (5) lines of the results.
 
     Args:
         df - Pandas DataFrame containing the city data
